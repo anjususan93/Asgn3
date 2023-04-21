@@ -1,0 +1,16 @@
+#myCanvas {
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  width: 1000px;
+  height: 500px;
+}
+
+#resetBtn {
+  margin-left: 400px;
+  margin-top:20px;
+  background-color: #5a389b;
+  border: 2px solid #000000;
+
+  color: #ffffff;
+  text-align: center;
+}

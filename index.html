@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Canvas Anju George</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="myCanvas"></canvas>
+    
+    
+
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        canvas.width = 1000;
+        canvas.height = 500;
+    
+        var triangles = [
+            {size: 50, color: "#B5EAd7", x1: 50, y1: 50, x2: 190, y2: 50, x3: 165, y3: 100},
+            {size: 30, color: "#7ec4cf", x1: 150, y1: 10, x2: 270, y2: 35, x3: 70, y3: 40},
+            {size: 100, color: "#ffb7b2", x1: 70, y1: 150, x2: 320, y2: 195, x3: 75, y3: 195},
+            {size: 30, color: "#c7ceea", x1: 800, y1: 450, x2: 840, y2: 360, x3: 985, y3: 495},
+            {size: 20, color: "#f2c9ca", x1: 200, y1: 50, x2: 480, y2: 35, x3: 170, y3: 100},
+            {size: 100, color: "#c7f4ff", x1: 400, y1: 470, x2: 430, y2: 300, x3: 500, y3: 400},
+
+            {size: 50, color: "#b5d5ea", x1: 995, y1: 275, x2: 890, y2: 15, x3: 815, y3: 105},
+            {size: 30, color: "#ebd5f2", x1: 105, y1: 450, x2: 150, y2: 350, x3: 225, y3:400},
+            {size: 100, color: "#f2d5de", x1: 100, y1: 300, x2: 200, y2: 380, x3: 80, y3: 200},
+            {size: 30, color: "#f0f2d5", x1: 790, y1: 430, x2: 820, y2: 250, x3: 925, y3: 220},
+            {size: 20, color: "#f2e9d5", x1: 400, y1: 200, x2: 500, y2: 150, x3: 300, y3: 100},
+            {size: 100, color: "#dfd5f2", x1: 600, y1: 500, x2: 500, y2: 300, x3: 660, y3: 400},
+
+            {size: 50, color: "#b1e0c7", x1: 995, y1: 5, x2: 990, y2: 250, x3: 895, y3: 2},
+            {size: 30, color: "#eaffb5", x1: 750, y1: 50, x2: 850, y2: 150, x3: 725, y3: 220},
+            {size: 100, color: "#ffe8b5", x1: 650, y1: 300, x2: 600, y2: 350, x3: 570, y3: 200},
+            {size: 30, color: "#f0f2d5", x1: 300, y1: 450, x2: 250, y2: 400, x3: 325, y3: 380},
+            {size: 20, color: "#d9b5ff", x1: 120, y1: 110, x2: 390, y2: 210, x3: 290, y3: 100},
+            {size: 100, color: "#e8c1dd", x1: 290, y1: 200, x2: 230, y2: 280, x3: 350, y3: 400},
+
+            {size: 30, color: "#ffc7e9", x1: 3, y1: 5, x2: 10, y2: 75, x3: 105, y3: 110},
+            {size: 30, color: "#d4e3b6", x1: 2, y1: 450, x2: 50, y2: 390, x3: 25, y3: 350},
+            {size: 100, color: "#a0ded3", x1: 5, y1: 300, x2: 10, y2: 380, x3: 50, y3: 200},
+            {size: 30, color: "#a0ded3", x1: 850, y1: 350, x2: 930, y2: 220, x3: 995, y3: 290},
+            {size: 20, color: "#f2e9d5", x1: 3, y1: 200, x2: 50, y2: 150, x3: 20, y3: 100},
+            {size: 100, color: "#dfd5f2", x1: 15, y1: 190, x2: 3, y2: 290, x3: 45, y3: 200},
+
+            {size: 100, color: "#bef3f7", x1: 10, y1: 10, x2: 150, y2: 8, x3: 50, y3: 40},
+            {size: 30, color: "#d8fcb3", x1: 15, y1: 80, x2: 50, y2: 140, x3: 260, y3: 170},
+            {size: 20, color: "#b3e9fc", x1: 60, y1: 150, x2: 45, y2: 250, x3: 95, y3: 300},
+            {size: 30, color: "#a2ace0", x1: 50, y1: 260, x2: 25, y2: 340, x3: 100, y3: 450},
+            {size: 100, color: "#c3e3b8", x1: 65, y1: 290, x2: 105, y2: 430, x3: 140, y3: 340},
+            {size: 30, color: "#f0f2d5", x1: 5, y1: 450, x2: 50, y2: 400, x3: 120, y3: 480},
+            
+            {size: 20, color: "#fcc9c5", x1: 5, y1: 495, x2: 5, y2: 455, x3: 140, y3: 495},
+            {size: 20, color: "#fcdcc5", x1: 90, y1: 205, x2: 200, y2: 370, x3: 250, y3: 210},
+            {size: 20, color: "#d9b5ff", x1: 240, y1: 400, x2: 110, y2: 460, x3: 290, y3: 499},
+            {size: 20, color: "#a2ace0", x1: 205, y1: 380, x2: 250, y2: 400, x3: 230, y3: 290},
+            {size: 20, color: "#eaffb5", x1: 315, y1: 375, x2: 255, y2: 390, x3: 235, y3: 290},
+            {size: 100, color: "#c3e3b8", x1: 450, y1: 190, x2: 380, y2: 450, x3: 310, y3: 240},
+            
+            {size: 30, color: "#fcc8b3", x1: 300, y1: 490, x2: 330, y2: 390, x3: 400, y3: 490},
+            {size: 20, color: "#fcc9c5", x1: 410, y1: 490, x2: 530, y2: 385, x3: 590, y3: 495},
+            {size: 100, color: "#e1cafa", x1: 400, y1: 5, x2: 170, y2: 10, x3: 310, y3: 40},
+            {size: 30, color: "#fcc8b3", x1: 410, y1: 5, x2: 590, y2: 3, x3: 325, y3: 40},
+            {size: 20, color: "#caf9fa", x1: 320, y1: 90, x2: 580, y2: 10, x3: 540, y3: 150},
+            {size: 100, color: "#fadfb4", x1: 500, y1: 380, x2: 430, y2: 290, x3: 480, y3: 165},
+            
+            {size: 30, color: "#afdbb7", x1: 930, y1: 495, x2: 670, y2: 410, x3: 615, y3: 495},
+            {size: 20, color: "#fcc9c5", x1: 795, y1: 450, x2: 730, y2: 230, x3: 605, y3: 355},
+            {size: 100, color: "#afbadb", x1: 730, y1: 160, x2: 670, y2: 280, x3: 560, y3: 155},
+            {size: 30, color: "#f2c9e8", x1: 500, y1: 290, x2: 590, y2: 345, x3: 490, y3: 165},
+            {size: 20, color: "#c9f2c9", x1: 550, y1: 150, x2: 595, y2: 340, x3: 500, y3: 165},
+            {size: 100, color: "#fadfb4", x1: 550, y1: 140, x2: 730, y2: 150, x3: 680, y3: 5},
+
+         
+            {size: 30, color: "#afdbb7", x1: 735, y1: 225, x2: 785, y2: 400, x3: 830, y3: 165},
+            {size: 20, color: "#fcc9c5", x1: 995, y1: 496, x2: 995, y2: 300, x3: 855, y3: 355},
+            {size: 100, color: "#afbadb", x1: 850, y1: 155, x2: 920, y2: 210, x3: 825, y3: 240},
+            {size: 30, color: "#f2c9e8", x1: 810, y1: 90, x2: 890, y2: 5, x3: 700, y3: 5},
+            {size: 20, color: "#c9f2c9", x1: 670, y1: 5, x2: 595, y2: 5, x3: 555, y3: 120},
+        ];
+
+        function drawTriangles() {
+            for (var i = 0; i < triangles.length; i++) {
+                var tri = triangles[i];
+                ctx.fillStyle = tri.color;
+                var path = new Path2D();
+                path.moveTo(tri.x1, tri.y1);
+                path.lineTo(tri.x2, tri.y2);
+                path.lineTo(tri.x3, tri.y3);
+                path.closePath();
+                ctx.fill(path);
+                tri.path = path; // set the path for the triangle
+            }
+        }
+
+        function changeColor(index) {
+            console.log("Changing color of triangle at index: " + index);
+            var tri = triangles[index];
+            tri.color = getRandomColor();
+            drawTriangles();
+        }
+
+        canvas.addEventListener("click", function(e) {
+            var x = e.offsetX;
+            var y = e.offsetY;
+            for (var i = 0; i < triangles.length; i++) {
+                var tri = triangles[i];
+                if (ctx.isPointInPath(tri.path, x, y, "nonzero")) {
+                    changeColor(i);
+                    break; 
+                }
+            }
+        });
+
+        function getRandomColor() {
+            var letters = "012345678ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        drawTriangles();
+
+    </script>
+</body>
+</html>
